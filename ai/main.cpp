@@ -6,8 +6,8 @@
 #include <fstream>
 
 int main(int argc, char **argv) {
-  Ai ai(9);
-  std::ifstream in("grid");
+  Ai ai(std::atoi(argv[1]));
+  std::ifstream in(argv[2]);
   ai.load_grid(in);
   ai.print(std::cout);
   

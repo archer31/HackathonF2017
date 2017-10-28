@@ -24,7 +24,10 @@ void Ai::print(std::ostream& out) {
   if (!solved) out << "Error: game not solved\n";
   for (size_t row = 0; row < size; ++row) {
     for (size_t col = 0; col < size; ++col) {
-      out << get_pos(row, col).domain[0];
+      if (get_pos(row, col).domain.size() != 1)
+        out << '-';
+      else
+        out << get_pos(row, col).domain[0];
     }
     out << '\n';
   }
@@ -43,13 +46,14 @@ bool Ai::solve() {
   while (!q.empty()) {
     ++iters;
     Constraint &con = q[0]; q.erase(q.begin());
-    if (con.left->domain.size() == 1) continue;
+    //if (con.left->domain.size() == 1) continue;
+    if (con.left->domain.size() == 0) return false;
     if (con.right->domain.size() != 1) continue;
     auto it = std::find(con.left->domain.begin(), con.left->domain.end(), con.right->domain[0]);
     if (it != con.left->domain.end()) {
       con.left->domain.erase(it);
       for (size_t i = 0; i < con.left->cons.size(); ++i) {
-        q.push_back(Constraint(con.left->cons[i].left, con.left));
+        q.push_back(Constraint(con.left->cons[i].right, con.left));
       }
     }
   }
