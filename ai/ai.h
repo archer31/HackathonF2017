@@ -10,6 +10,7 @@ using std::size_t;
 
 class Ai {
   public:
+  Ai(size_t);
   Ai();
   void print(std::ostream&) const;
   bool solve();
@@ -18,17 +19,17 @@ class Ai {
   class Constraint;
   class Variable {
     public:
-    Variable();
     std::vector<int> domain;
     std::vector<Constraint> cons;
   };
   class Constraint {
     public:
-    Variable& var;
+    Variable *left = nullptr, *right = nullptr;
   };
 	size_t size;
   std::vector<Variable> vars;
   size_t iters;
+  bool solved;
 
   void fill_cons();
 	void fill_vars();
