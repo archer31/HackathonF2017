@@ -16,8 +16,22 @@ bool Ai::solve() {
   return false;
 }
 
-void Ai::load_grid(std::istream& in) {
+Ai::Variable& Ai::get_pos(size_t row, size_t col) {
+  return vars[row*size + col];
+}
 
+void Ai::load_grid(std::istream& in) {
+  char c;
+  for(size_t row = 0; row < size; row++) {
+    for(size_t col = 0; col < size; col++) {
+      in >> c;
+      if(c != ' ') {
+        Variable& ref = get_pos(row, col);
+        ref.domain.clear();
+        ref.domain.push_back( (size_t)(c - 48) );
+      }
+    }
+  }
 }
 
 void Ai::fill_cons() {
@@ -31,4 +45,3 @@ void Ai::fill_vars() {
     }
   }
 }
-

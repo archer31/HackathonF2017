@@ -32,6 +32,7 @@ class Ai {
 
   void fill_cons();
 	void fill_vars();
+  Variable& get_pos(size_t, size_t);
 };
 
 #endif //AI_H
