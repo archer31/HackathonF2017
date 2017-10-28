@@ -25,7 +25,7 @@ class Ai {
   class Variable {
     public:
     std::vector<int> domain;
-    std::vector<Constraint> cons;
+    std::vector<Constraint*> cons;
   };
 	size_t size;
   std::vector<Variable> vars;
@@ -35,8 +35,6 @@ class Ai {
   void fill_cons();
 	void fill_vars();
   Variable& get_pos(size_t, size_t);
-
-  vector<Constraint*> q;
 };
 
 #endif //AI_H

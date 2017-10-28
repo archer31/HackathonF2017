@@ -26,7 +26,8 @@ void Ai::print(std::ostream& out) const {
 
 bool Ai::solve() {
   if (solved) return true;
-  for (size_t i = 0; i < size*size; ++i) {
+  std::vector<int*> q;
+/*  for (size_t i = 0; i < size*size; ++i) {
     Variable& var = vars[i];
     for (auto con = var.cons.begin(); con != var.cons.end(); ++con) {
       q.push_back(&(*con));
@@ -50,7 +51,7 @@ bool Ai::solve() {
     if (iters >= 1944) {
       delete con;
     }
-  }
+  }*/
   return false;
 }
 
@@ -76,31 +77,7 @@ void Ai::fill_cons() {
   for (size_t row = 0; row < size; ++row) {
     for (size_t col = 0; col < size; ++col) {
       Variable& var = get_pos(row, col);
-      // for things in this row
-      var.cons.resize((size-1)*3);
-      size_t iter = 0;
-      for (; iter < size-1; ++iter) {
-        if (col != iter%size)
-          var.cons[iter].right = &get_pos(row, iter%size);
-          var.cons[iter].left = &var;
-      }
-      // for things in this col
-      for (; iter < 2*(size-1); ++iter) {
-        if (row != iter%size)
-          var.cons[iter].right = &get_pos(iter%size, col);
-          var.cons[iter].left = &var;
-      }
-      // for things in this square
-      size_t rowbegin = floor(row/std::sqrt(size)) * std::sqrt(size);
-      size_t colbegin = floor(col/std::sqrt(size)) * std::sqrt(size);
-      for (size_t offrow = rowbegin; offrow < rowbegin+std::sqrt(size); ++offrow) {
-        for (size_t offcol = colbegin; offcol < colbegin+std::sqrt(size); ++offcol) {
-          if (offrow+rowbegin == row && offcol+colbegin == col) continue;
-          var.cons[iter].right = &get_pos(rowbegin+offrow, colbegin+offcol);
-          var.cons[iter].left = &var;
-          ++iter;
-        }
-      }
+//      for (size_t row1 = 0; 
     }
   }
 }
