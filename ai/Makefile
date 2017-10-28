@@ -1,15 +1,15 @@
 ## Author: Alexander Corley, Jacob Hanson, Ryan Lynn
 ## 10-28-2017
 
-solve: main.o ai.o
-	g++ main.o ai.o -o solve
+CXX=g++
+CXXFLAGS=-std=c++11 -Wall -g
+SOURCE=$(wildcard *.cpp)
+OBJECTS=$(SOURCE:.cpp=.o)
+EXE=solve
 
-main.o: main.cpp
-	g++ -c main.cpp -o main.o
-
-ai.o: ai.cpp ai.h
-	g++ -c ai.cpp -o ai.o
+EXE: $(OBJECTS)
+	$(CXX) $(OBJECTS) -o $(EXE)
 
 clean:
-	rm -f *.o solve
+	rm -f $(OBJECTS) $(EXE)
 
