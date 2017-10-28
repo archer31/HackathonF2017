@@ -4,10 +4,7 @@
 #include "ai.h"
 using std::size_t;
 
-Ai::Ai()
-  : size(9)
-  , variables(size*size, std::vector<int>(size))
-  , iters(0) {
+Ai::Ai() {
 
 }
 
@@ -15,15 +12,23 @@ void Ai::print(std::ostream& out) const {
 
 }
 
-void Ai::solve() {
-
+bool Ai::solve() {
+  return false;
 }
 
 void Ai::load_grid(std::istream& in) {
 
 }
 
-void Ai::fill_vars() {
+void Ai::fill_cons() {
+  
+}
 
+void Ai::fill_vars() {
+  for (size_t var = 0; var < size*size; ++var) {
+    for (size_t i = 1; i <= size; ++i) {
+      vars[var].domain[i-1] = i;
+    }
+  }
 }
 
