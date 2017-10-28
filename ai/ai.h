@@ -26,7 +26,7 @@ class Ai {
   class Variable {
     public:
     std::vector<int> domain;
-    std::vector<Constraint*> cons;
+    std::vector<Constraint> cons;
   };
 	size_t size;
   std::vector<Variable> vars;
