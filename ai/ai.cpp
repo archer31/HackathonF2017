@@ -3,7 +3,6 @@
 //10-28-2017
 #include "ai.h"
 #include <cmath>
-#include <queue>
 #include <algorithm>
 using std::size_t;
 
@@ -13,6 +12,7 @@ Ai::Ai(size_t size)
   , solved(false) {
   fill_vars();
   fill_cons();
+  std::vector<Constraint*> meme;
 }
 
 Ai::Ai()
@@ -26,16 +26,15 @@ void Ai::print(std::ostream& out) const {
 
 bool Ai::solve() {
   if (solved) return true;
-  std::vector<Constraint*> q;
   for (size_t i = 0; i < size*size; ++i) {
     Variable& var = vars[i];
     for (auto con = var.cons.begin(); con != var.cons.end(); ++con) {
-      q.push(&(*con));
+      q.push_back(&(*con));
     }
   }
   while (!q.empty()) {
     ++iters;
-    Constraint *con = q.front(); q.pop();
+    Constraint *con = q[0]; q.erase(q.begin());
     if (con->left->domain.size() == 1) continue;
     if (con->right->domain.size() != 1) continue;
     auto it = std::find(con->left->domain.begin(), con->left->domain.end(), con->right->domain[0]);
@@ -45,7 +44,7 @@ bool Ai::solve() {
         Constraint *c = new Constraint();
         c->left = con->left->cons[i].left;
         c->right = con->left;
-        q.push(c);
+        q.push_back(c);
       }
     }
     if (iters >= 1944) {

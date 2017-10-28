@@ -7,6 +7,7 @@
 #include <vector>
 #include <iostream>
 using std::size_t;
+using std::vector;
 
 class Ai {
   public:
@@ -16,15 +17,15 @@ class Ai {
   bool solve();
   void load_grid(std::istream&);
   private:
-  class Constraint;
+  class Variable;
+  class Constraint {
+    public:
+    Variable *left = nullptr, *right = nullptr;
+  };
   class Variable {
     public:
     std::vector<int> domain;
     std::vector<Constraint> cons;
-  };
-  class Constraint {
-    public:
-    Variable *left = nullptr, *right = nullptr;
   };
 	size_t size;
   std::vector<Variable> vars;
@@ -34,6 +35,8 @@ class Ai {
   void fill_cons();
 	void fill_vars();
   Variable& get_pos(size_t, size_t);
+
+  vector<Constraint*> q;
 };
 
 #endif //AI_H

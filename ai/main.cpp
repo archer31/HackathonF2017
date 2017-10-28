@@ -6,7 +6,7 @@
 #include <fstream>
 
 int main(int argc, char **argv) {
-  Ai ai;
+  Ai ai(4);
   std::ifstream in("grid");
   ai.load_grid(in);
   ai.solve();
