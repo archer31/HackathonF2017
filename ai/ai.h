@@ -20,6 +20,7 @@ class Ai {
   class Variable;
   class Constraint {
     public:
+    Constraint(Variable* l, Variable* r): left(l), right(r) {};
     Variable *left = nullptr, *right = nullptr;
   };
   class Variable {

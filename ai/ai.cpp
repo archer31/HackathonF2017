@@ -5,6 +5,7 @@
 #include <cmath>
 #include <algorithm>
 using std::size_t;
+using std::sqrt;
 
 Ai::Ai(size_t size) 
   : size(size)
@@ -77,7 +78,34 @@ void Ai::fill_cons() {
   for (size_t row = 0; row < size; ++row) {
     for (size_t col = 0; col < size; ++col) {
       Variable& var = get_pos(row, col);
-//      for (size_t row1 = 0; 
+
+      // vertical col
+      for(size_t c=0; c<size; c++) {
+        if(c == col) continue;
+
+        Constraint* my_const = new Constraint(&var, &get_pos(row, c));
+        var.cons.push_back(my_const);
+      }
+
+      // horizontal row
+      for(size_t r=0; r<size; r++) {
+        if(r == row) continue;
+
+        Constraint* my_const = new Constraint(&var, &get_pos(r, col));
+        var.cons.push_back(my_const);
+      }
+
+      // local square
+      size_t start_row = floor(row / sqrt(size)) * sqrt(size);
+      size_t start_col = floor(col / sqrt(size)) * sqrt(size);
+      for(size_t r=start_row; r<start_row+sqrt(size); r++) {
+        for(size_t c=start_col; c<start_col+sqrt(size); c++) {
+          if(r == row && c == col) continue;
+
+          Constraint* my_const = new Constraint(&var, &get_pos(r, c));
+          var.cons.push_back(my_const);
+        }
+      }
     }
   }
 }
