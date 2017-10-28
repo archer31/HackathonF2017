@@ -6,9 +6,12 @@
 #include <fstream>
 
 int main(int argc, char **argv) {
-  Ai ai(4);
+  Ai ai(9);
   std::ifstream in("grid");
   ai.load_grid(in);
+  ai.print(std::cout);
+  
   ai.solve();
+  ai.print(std::cout);
   return 0;
 }

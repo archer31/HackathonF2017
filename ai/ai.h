@@ -13,7 +13,7 @@ class Ai {
   public:
   Ai(size_t);
   Ai();
-  void print(std::ostream&) const;
+  void print(std::ostream&);
   bool solve();
   void load_grid(std::istream&);
   private:

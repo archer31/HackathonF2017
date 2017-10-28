@@ -13,25 +13,29 @@ Ai::Ai(size_t size)
   , solved(false) {
   fill_vars();
   fill_cons();
-  std::vector<Constraint*> meme;
 }
 
 Ai::Ai()
   : Ai(9) {}
 
 
-void Ai::print(std::ostream& out) const {
+void Ai::print(std::ostream& out) {
   if (!solved) out << "Error: game not solved\n";
-  //TODO
+  for (size_t row = 0; row < size; ++row) {
+    for (size_t col = 0; col < size; ++col) {
+      out << get_pos(row, col).domain[0];
+    }
+    out << '\n';
+  }
 }
 
 bool Ai::solve() {
   if (solved) return true;
-  std::vector<int*> q;
-/*  for (size_t i = 0; i < size*size; ++i) {
+  std::vector<Constraint*> q;
+  for (size_t i = 0; i < size*size; ++i) {
     Variable& var = vars[i];
     for (auto con = var.cons.begin(); con != var.cons.end(); ++con) {
-      q.push_back(&(*con));
+      q.push_back((*con));
     }
   }
   while (!q.empty()) {
@@ -43,16 +47,16 @@ bool Ai::solve() {
     if (it != con->left->domain.end()) {
       con->left->domain.erase(it);
       for (size_t i = 0; i < con->left->cons.size(); ++i) {
-        Constraint *c = new Constraint();
-        c->left = con->left->cons[i].left;
-        c->right = con->left;
+        Constraint *c = new Constraint(con->left->cons[i]->left, c->right = con->left);
         q.push_back(c);
       }
     }
-    if (iters >= 1944) {
+    if (iters >= 3*(size-1)*size*size) {
       delete con;
     }
-  }*/
+  }
+  
+
   return false;
 }
 
@@ -65,10 +69,10 @@ void Ai::load_grid(std::istream& in) {
   for(size_t row = 0; row < size; row++) {
     for(size_t col = 0; col < size; col++) {
       in >> c;
-      if(c != ' ') {
+      if(c != '0') {
         Variable& ref = get_pos(row, col);
-        ref.domain.clear();
-        ref.domain.push_back( (size_t)(c - 48) );
+        ref.domain.resize(0);
+        ref.domain.push_back(c-48);
       }
     }
   }
