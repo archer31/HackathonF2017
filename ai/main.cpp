@@ -9,7 +9,7 @@ int main(int argc, char **argv) {
   Ai ai(std::atoi(argv[1]));
   std::ifstream in(argv[2]);
   ai.load_grid(in);
-  ai.print(std::cout, std::cerr);
+  ai.print(std::cerr, std::cerr);
   
   ai.solve();
   ai.print(std::cout, std::cerr);
