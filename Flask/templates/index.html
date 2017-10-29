@@ -9,7 +9,8 @@
   </head>
   <body>
     <h1>AI Love Sudoku</h1>
-    <div align="left" size=50%>
+    <div>
+    <div style="align:left; width:49%; display:inline-block">
     <table id="sudoku_grid" cellspacing="0" cellpadding="0" class="t">
       <tbody>
         <tr>
@@ -114,7 +115,7 @@
       </tbody>
     </table>
     </div>
-    <div align="right" size=50%>
+    <div style="align:right; width:49%; display:inline-block">
     <table id="sudoku_grid" cellspacing="0" cellpadding="0" class="t">
       <tbody>
         <tr>
@@ -218,6 +219,7 @@
         </tr>
       </tbody>
     </table>
+    </div>
     </div>
   <script>
     createPlayerGrid( "{{ puzzle }}" );

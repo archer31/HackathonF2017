@@ -6,7 +6,7 @@ h1{display:block; margin: 0; background-color: brown; color: beige; font-family:
 /*Sudoku grid*/
 table{margin:1em auto;}
 
-td{height:40px; width:40px; border 1px solid;text-align: center; color:black; font-family: "Comic Sans", sansserif;}
+td{height:45px; width:45px; border 1px solid;text-align: center; color:black; font-family: "Comic Sans", sansserif;}
 
 td:hover{background-color: skyblue;}
 
