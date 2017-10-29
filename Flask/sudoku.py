@@ -8,6 +8,7 @@ app = Flask(__name__)
 def web_page():
   author = "Jake, Ryan, and Xandy"
   name = "AI Love Sudoku"
+
   puzzle = get_puzzle()
   return render_template('index.html', puzzle=puzzle)
 
