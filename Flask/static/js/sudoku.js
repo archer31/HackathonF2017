@@ -35,7 +35,7 @@ function createAIGrid(solutionStr, puzzleStr, time)
     }
   }
 
-  setTimeout(showSolution, time*110000, solutionStr);
+  setTimeout(showSolution, time*1100, solutionStr);
 }
 
 function showSolution(solutionStr) {
@@ -52,7 +52,13 @@ function showSolution(solutionStr) {
   }
 
   if(checkSolution()) {
-    // MAKE BOX TO TELL USER IF WON
+    document.getElementById('victory').classList.remove("hide-message");
+    document.getElementById('victory').classList.add("show-message");
+  }
+  else
+  {
+    document.getElementById('failure').classList.remove("hide-message");
+    document.getElementById('failure').classList.add("show-message");
   }
 }
 
@@ -121,18 +127,4 @@ function validSudoku(data) {
     }
     return valid;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
