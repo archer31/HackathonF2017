@@ -3,19 +3,14 @@
   <head>
     <meta charset="UTF-8">
     <!--BOOTSTRAP(style only)-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/ootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg320mUcww7on3RYdg4va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/sudoku.css') }}">
     <script type="text/javascript" src="{{ url_for('static', filename='js/sudoku.js') }}"></script>
     <title>AI Love Sudoku</title>
   </head>
   <body>
-  <script>
-    createPlayerGrid( {{ puzzle }} );
-    createAIGrid( {{ puzzle }} );
-  </script>
     <h1>AI Love Sudoku</h1>
     <div align="left" size=50%>
-    <table id="sudoku_grid" cellspacing="0" cellpadding="0"class="t">
+    <table id="sudoku_grid" cellspacing="0" cellpadding="0" class="t">
       <tbody>
         <tr>
           <td id="11" class="tl" contenteditable="false"></td>
@@ -120,7 +115,7 @@
     </table>
     </div>
     <div align="right" size=50%>
-    <table id="sudoku_grid" cellspacing="0" cellpadding="0"class="t">
+    <table id="sudoku_grid" cellspacing="0" cellpadding="0" class="t">
       <tbody>
         <tr>
           <td id="111" class="tl" contenteditable="false"></td>
@@ -224,5 +219,8 @@
       </tbody>
     </table>
     </div>
+  <script>
+    createAIGrid( "{{ puzzle }}" );
+  </script>
   </body>
 </html>
