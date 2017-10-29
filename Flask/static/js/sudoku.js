@@ -16,7 +16,8 @@ function createPlayerGrid(puzzleStr)
     }
   }
 }
-function createAIGrid(puzzleStr)
+
+function createAIGrid(solutionStr, puzzleStr, time)
 {
   puzzleArray = puzzleStr.split("")
   var iter=0;
@@ -31,6 +32,22 @@ function createAIGrid(puzzleStr)
       } else {
         document.getElementById(id).innerHTML = val;
       }
+    }
+  }
+
+  setTimeout(showSolution, time*1100000, solutionStr);
+}
+
+function showSolution(solutionStr) {
+  puzzleArray = solutionStr.split("")
+  var iter=0;
+  for(var i=1; i<=9; i++)
+  {
+    for(var j=1; j<=9; j++, iter++)
+    {
+      var id = ("1"+i)+j;
+      var val = puzzleArray[iter];
+      document.getElementById(id).innerHTML = val;
     }
   }
 }

@@ -1,7 +1,7 @@
 #!/usr/bin/python
 from __future__ import print_function
 
-import requests, subprocess, json
+import requests, subprocess, json, time
 import BeautifulSoup as bs
 
 # URL from which we'll grab the puzzle
@@ -36,6 +36,11 @@ def ai_solve(board):
       f.write(c)
   
   cmd = "../ai/solve 9 /tmp/grid"
+
+  start_time = time.time()
   proc = subprocess.Popen(cmd.split(" "), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
   out, err = proc.communicate()
-  return out
+  end_time = time.time()
+
+  time_elapsed = end_time - start_time
+  return out, time_elapsed

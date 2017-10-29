@@ -12,8 +12,8 @@ def web_page():
   name = "AI Love Sudoku"
 
   puzzle = get_puzzle()
-  solution = ai_solve(puzzle)
-  return render_template('index.html', puzzle=str(puzzle), solution=str(solution))
+  solution, time_elapsed = ai_solve(puzzle)
+  return render_template('index.html', puzzle=str(puzzle), solution=str(solution), time_elapsed=str(time_elapsed))
 
 if __name__ == '__main__':
   app.run()
