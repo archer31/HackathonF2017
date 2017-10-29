@@ -9,7 +9,7 @@ import BeautifulSoup as bs
 url = 'http://www.sudokuweb.org/'
 
 def get_puzzle():
-  board = []
+  board = ""
   payload = {'name': 'sign2', 'value': '9x9'}
   response = requests.post(url, data=json.dumps(payload)).text
 
@@ -23,8 +23,8 @@ def get_puzzle():
     for span in spans:
       if span.has_key('class'):
         if span['class'] == 'sedy':
-          board.append(str(span.string))
+          board += str(span.string)
         elif span['class'] == 'vloz':
-          board.append(' ')
+          board += '0'
 
   return board

@@ -1,4 +1,4 @@
-function createPLayerGrid(puzzleArray)
+function createPlayerGrid(puzzleArray)
 {
   var iter=0;
   for(var i=1; i<=9; i++)

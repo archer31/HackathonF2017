@@ -8,7 +8,11 @@
     <script type="text/javascript" src="{{ url_for('static', filename='js/sudoku.js') }}"></script>
     <title>AI Love Sudoku</title>
   </head>
-  <body onload=createGrid({{ puzzle }})>
+  <body>
+  <script>
+    createPlayerGrid( {{ puzzle }} );
+    createAIGrid( {{ puzzle }} );
+  </script>
     <h1>AI Love Sudoku</h1>
     <div align="left" size=50%>
     <table id="sudoku_grid" cellspacing="0" cellpadding="0"class="t">
