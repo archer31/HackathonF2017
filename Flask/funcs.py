@@ -38,4 +38,4 @@ def ai_solve(board):
   cmd = "../ai/solve 9 /tmp/grid"
   proc = subprocess.Popen(cmd.split(" "), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
   out, err = proc.communicate()
-  print(out)
+  return out

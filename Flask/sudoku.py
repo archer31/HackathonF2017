@@ -13,7 +13,7 @@ def web_page():
 
   puzzle = get_puzzle()
   solution = ai_solve(puzzle)
-  return render_template('index.html', puzzle=str(puzzle))
+  return render_template('index.html', puzzle=str(puzzle), solution=str(solution))
 
 if __name__ == '__main__':
   app.run()
