@@ -1,4 +1,4 @@
-function createPLayerGrid()
+function createPLayerGrid(puzzleArray)
 {
   var iter=0;
   for(var i=1; i<=9; i++)
@@ -10,7 +10,7 @@ function createPLayerGrid()
     }
   }
 }
-function createAIGrid()
+function createAIGrid(puzzleArray)
 {
   var iter=0;
   for(var i=1; i<=9; i++)

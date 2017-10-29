@@ -27,4 +27,4 @@ def get_puzzle():
         elif span['class'] == 'vloz':
           board.append(' ')
 
-  return json.dumps(board)
+  return board

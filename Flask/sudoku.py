@@ -1,4 +1,4 @@
-import subprocess
+import subprocess, json
 from flask import Flask, render_template
 from get_puzzle import get_puzzle
 
@@ -10,7 +10,7 @@ def web_page():
   name = "AI Love Sudoku"
 
   puzzle = get_puzzle()
-  return render_template('index.html', puzzle=puzzle)
+  return render_template('index.html', puzzle=json.dumps(puzzle))
 
 if __name__ == '__main__':
   app.run()
