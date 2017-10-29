@@ -33,7 +33,7 @@ void Ai::print(std::ostream& out, std::ostream& err) {
       else
         out << get_pos(row, col).domain[0];
     }
-    out << '\n';
+//    out << '\n';
   }
   err << "iters:\t" << iters << "\n";
   err << "guesses:\t" << guessesTaken << "\n";
