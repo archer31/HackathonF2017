@@ -1,6 +1,8 @@
+#!/usr/bin/python
+
 import subprocess, json
 from flask import Flask, render_template
-from get_puzzle import get_puzzle
+from funcs import get_puzzle, ai_solve
 
 app = Flask(__name__)
 
@@ -10,6 +12,7 @@ def web_page():
   name = "AI Love Sudoku"
 
   puzzle = get_puzzle()
+  solution = ai_solve(puzzle)
   return render_template('index.html', puzzle=str(puzzle))
 
 if __name__ == '__main__':

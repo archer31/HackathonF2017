@@ -1,8 +1,7 @@
 #!/usr/bin/python
 from __future__ import print_function
 
-import requests
-import json
+import requests, subprocess, json
 import BeautifulSoup as bs
 
 # URL from which we'll grab the puzzle
@@ -28,3 +27,15 @@ def get_puzzle():
           board += '0'
 
   return board
+
+def ai_solve(board):
+  with open('/tmp/grid', 'w') as f:
+    for i, c in enumerate(board):
+      if i != 0 and i % 9 == 0:
+        f.write('\n')
+      f.write(c)
+  
+  cmd = "../ai/solve 9 /tmp/grid"
+  proc = subprocess.Popen(cmd.split(" "), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+  out, err = proc.communicate()
+  print(out)
