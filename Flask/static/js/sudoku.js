@@ -35,7 +35,7 @@ function createAIGrid(solutionStr, puzzleStr, time)
     }
   }
 
-  setTimeout(showSolution, time*110000, solutionStr);
+  setTimeout(showSolution, time*330000, solutionStr);
 }
 
 function showSolution(solutionStr) {
