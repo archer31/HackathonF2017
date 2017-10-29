@@ -10,7 +10,7 @@ def web_page():
   name = "AI Love Sudoku"
 
   puzzle = get_puzzle()
-  return render_template('index.html', puzzle=json.dumps(puzzle))
+  return render_template('index.html', puzzle=str(puzzle))
 
 if __name__ == '__main__':
   app.run()
