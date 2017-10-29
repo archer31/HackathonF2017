@@ -76,6 +76,7 @@ bool Ai::solve() {
     if (!is_solved()) {
       vec.push_back(vars);
       size_t index = make_guess();
+      if (index > vars.size()) return false;
       Variable var = vars[index];
       int guess = var.domain[rand()%var.domain.size()];
       var.domain.erase(std::find(var.domain.begin(), var.domain.end(), guess));
@@ -101,16 +102,10 @@ size_t Ai::make_guess() {
       mins.push_back(i);
     }
   }
+  if (mins.size() == 0) return vars.size()+1;
   return mins[std::rand()%mins.size()];
 }
 
-/*    if (q.empty() && !is_solved()) {
-      //copy vector to save it
-      //make guess
-      //save guess assuming it is wrong
-      //solve again
-    }
-*/
 bool Ai::is_solved() {
   for (auto it = vars.begin(); it != vars.end(); ++it) {
     if (it->domain.size() != 1)

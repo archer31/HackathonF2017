@@ -6,9 +6,17 @@
 #include <fstream>
 
 int main(int argc, char **argv) {
+  if (argc != 3) {
+    std::cerr <<  "usage: solve <SIZE> <FILE|->\n";
+    return 0;
+  }
   Ai ai(std::atoi(argv[1]));
-  std::ifstream in(argv[2]);
-  ai.load_grid(in);
+  if (argv[2][0] == '-')
+    ai.load_grid(std::cin);
+  else {
+    std::ifstream in(argv[2]);
+    ai.load_grid(in);
+  }
   ai.print(std::cerr, std::cerr);
   
   ai.solve();
