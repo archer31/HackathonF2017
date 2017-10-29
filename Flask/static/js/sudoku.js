@@ -35,7 +35,7 @@ function createAIGrid(solutionStr, puzzleStr, time)
     }
   }
 
-  setTimeout(showSolution, time*1100000, solutionStr);
+  setTimeout(showSolution, time*110000, solutionStr);
 }
 
 function showSolution(solutionStr) {
@@ -50,4 +50,89 @@ function showSolution(solutionStr) {
       document.getElementById(id).innerHTML = val;
     }
   }
+
+  if(checkSolution()) {
+    // MAKE BOX TO TELL USER IF WON
+  }
 }
+
+function checkSolution()
+{
+  var grid = new Array(9);
+  for(var i=0; i<9; i++) {
+    grid[i] = new Array(9);
+  }
+
+  var iter = 0;
+  for(var i=1; i<=9; i++)
+  {
+    for(var j=1; j<=9; j++, iter++)
+    {
+      var id = (""+i)+j;
+      var val = puzzleArray[iter];
+
+      grid[i-1][j-1] = val;
+    }
+  }
+
+  return validSudoku(grid);
+}
+
+function validSudoku(data) {
+    var valid = true, 
+        temp = [], 
+        data,
+        side,
+        slot;
+
+
+    // Check wrong size
+    if (data[0].length !== data.length) valid = false;
+
+    // slot*slot
+    slot = Math.sqrt(data.length);
+
+    // Verifiy horizontal
+    data.forEach(function(arr) {
+        valid = valid && arr.every(function(val, i) { return arr.indexOf(i + 1) > -1; });
+    });
+
+    // Verifiy vertical lines
+    data.forEach(function(arr, i) {
+        temp  = data.map(function(val) { return val[i]; });
+        valid = valid && arr.every(function(val, i) { return temp.indexOf(i + 1) > -1; });
+    });
+
+    // Verifiy boxes
+    for (var i = 0; i < slot; i++) {
+
+        data.forEach(function(val, e) {
+            side  = val.slice(slot * i, slot * i + slot);
+            temp  = temp.concat(side);
+
+            if ((e+1) % slot == 0 && e > 0) {
+                for (var j = 1; j <= data.length; j++)
+                    if (temp.indexOf(j) < 0) valid = false;                 
+                temp = [];
+            }
+
+        });
+
+    }
+    return valid;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
