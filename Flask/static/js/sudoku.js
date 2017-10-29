@@ -1,12 +1,18 @@
 function createPlayerGrid(puzzleStr)
 {
+  puzzleArray = puzzleStr.split("")
   var iter=0;
   for(var i=1; i<=9; i++)
   {
-    for(var j=1; j<=9; j++)
+    for(var j=1; j<=9; j++, iter++)
     {
-      document.getElementById((""+i)+j).innerHTML = "1";
-      iter++;
+      var id = (""+i)+j;
+      var val = puzzleArray[iter];
+      if(val == "0") {
+        document.getElementById(id).setAttribute("contenteditable", 'true');
+      } else {
+        document.getElementById(id).innerHTML = val;
+      }
     }
   }
 }
