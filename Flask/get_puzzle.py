@@ -21,13 +21,11 @@ def main():
     spans = row.findChildren('span')
 
     for span in spans:
-      if span.has_key('class') and span['class'] == 'sedy':
-        board.append(str(span.string))
-      else:
-        board.append(' ')
-
-  print(board)
-  print(len(board))
+      if span.has_key('class'):
+        if span['class'] == 'sedy':
+          board.append(str(span.string))
+        elif span['class'] == 'vloz':
+          board.append(' ')
 
 if __name__ == '__main__':
   main()
