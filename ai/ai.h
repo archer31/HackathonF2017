@@ -13,9 +13,10 @@ class Ai {
   public:
   Ai(size_t);
   Ai();
-  void print(std::ostream&);
+  void print(std::ostream&, std::ostream&);
   bool solve();
   void load_grid(std::istream&);
+  bool is_solved();
   private:
   class Variable;
   class Constraint {
@@ -30,8 +31,12 @@ class Ai {
   };
 	size_t size;
   std::vector<Variable> vars;
-  size_t iters;
-  bool solved;
+  size_t iters = 0;
+  bool solved = false;
+  size_t backTracks = 0;
+  size_t guessesTaken = 0;
+
+  size_t make_guess();
 
   void fill_cons();
 	void fill_vars();
